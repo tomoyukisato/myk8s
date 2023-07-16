@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-deployment-ru
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sample-deployment
+  template:
+    metadata:
+      labels:
+        app: sample-deployment
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:1.12
